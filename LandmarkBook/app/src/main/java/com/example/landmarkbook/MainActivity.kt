@@ -1,13 +1,16 @@
 package com.example.landmarkbook
 
-import android.os.Bundle
-import android.widget.ArrayAdapter
-import androidx.activity.enableEdgeToEdge
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.landmarkbook.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,54 +19,41 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(this.layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
         landmarkList = ArrayList<Landmark>()
 
-        //data
-        val ayairini = Landmark("Aya irini Kilisesi","Istanbul",R.drawable.ayairini)
+        val pisa = Landmark("Pisa","Italy",R.drawable.topkapi)
+        val colosseum = Landmark("Colloseum","Italy",R.drawable.kariyecami)
+        val eiffel = Landmark("Eiffel","France",R.drawable.kapalicarsi)
+        val londonBridge = Landmark("London Bridge","UK",R.drawable.ayairini)
 
-        val kapalicarsi = Landmark("Kapalı Çarşı", "Istanbul",R.drawable.kapalicarsi)
+        landmarkList.add(pisa)
+        landmarkList.add(colosseum)
+        landmarkList.add(eiffel)
+        landmarkList.add(londonBridge)
 
-        val kariyecami = Landmark("Kariye Camii", "Istanbul", R.drawable.kariyecami)
-
-        val topkapi = Landmark("Topkapı Sarayı", "Istanbul", R.drawable.topkapi)
-
-        landmarkList.add(ayairini)
-        landmarkList.add(kapalicarsi)
-        landmarkList.add(kariyecami)
-        landmarkList.add(topkapi)
-
+        //RecyclerView
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = LandmarkAdapter(landmarkList)
+        binding.recyclerView.adapter = adapter
+        /*
+        //Adapter: Layout & Data
 
         val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landmarkList.map { landmark -> landmark.name })
 
-        binding.listview.adapter = adapter
+        binding.listView.adapter = adapter
 
+        binding.listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+            val intent = Intent(applicationContext,DetailsActivity::class.java)
+            intent.putExtra("landmark",landmarkList[position])
+            //MySingleton.selectedLandmark = landmarkList[position]
+            startActivity(intent)
+        }
 
+         */
 
     }
-
 }
-
-
-/*RecyclerView
-binding.recyclerView.layoutManager = LinearLayoutManager(this)
-val adapter = LandmarkAdapter(landmarkList)
-binding.recyclerView.adapter = adapter
-/*
-//Adapter: Layout & Data
-
-val adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,landmarkList.map { landmark -> landmark.name })
-
-binding.listView.adapter = adapter
-
-binding.listView.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-    val intent = Intent(applicationContext,DetailsActivity::class.java)
-    intent.putExtra("landmark",landmarkList[position])
-    //MySingleton.selectedLandmark = landmarkList[position]
-    startActivity(intent)
-}
-
- */
