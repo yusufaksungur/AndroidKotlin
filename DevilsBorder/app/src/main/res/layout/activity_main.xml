@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/kasaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kasa: 2500 TL"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/bahisInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Bahis miktarını girin"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/zarAtButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zar At"
+        android:padding="10dp"/>
+
+    <TextView
+        android:id="@+id/sonucText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sonuç burada görünecek"
+        android:textSize="18sp"
+        android:paddingTop="10dp"/>
+</LinearLayout>
